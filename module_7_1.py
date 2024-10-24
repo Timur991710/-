@@ -15,7 +15,7 @@ class Shop():
     __file_name = 'products.txt'
 
     def get_products(self):
-        __file_name = open(self.__file_name, "r")
+        __file_name = open(self.__file_name, "r+")
         pro_read = __file_name.read()
         __file_name.close()
         return pro_read
@@ -24,7 +24,7 @@ class Shop():
     def  add(self, *products):
         file_get = self.get_products()
         for i in products:
-            if self.get_products().find(f"{i.name}") == -1:
+            if (self.get_products().find(f"{i.weight}") or self.get_products().find(f"{i.name}")) == -1:
                 file = open(self.__file_name, "a")
                 file.write(f'{i}\n')
                 file.close()
