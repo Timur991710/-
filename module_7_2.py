@@ -1,3 +1,4 @@
+from idlelib.iomenu import encoding
 from os import write
 from pprint import pprint
 
@@ -5,7 +6,7 @@ from pprint import pprint
 def custom_write(file_name, strings):
     trings_positions = {}
     line_number = 1
-    file = open(file_name, 'w')
+    file = open(file_name, 'w', encoding="utf-8")
     for i in strings:
 
         l_byte = file.tell()
