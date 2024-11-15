@@ -9,7 +9,7 @@ def write_words(word_count, file_name):
         for i in range(word_count):
             x = i +1
             file_name.write(f'{words}{x}\n')
-            time.sleep(0.001)
+            time.sleep(0.1)
         print(f"Завершилась запись в файл {file_name.name}. {threading.current_thread()}")
 
 
