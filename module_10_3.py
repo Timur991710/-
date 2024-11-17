@@ -1,13 +1,12 @@
 import threading
 import time
 import random
-from threading import Thread, Lock
 
-class Bank(Thread):
+
+class Bank():
     def __init__(self):
-        super().__init__()
         self.balance = 0
-        self.lock = Lock()
+        self.lock = threading.Lock()
 
 
 
