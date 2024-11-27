@@ -8,14 +8,14 @@ import asyncio
 
 
 
-api = ''
+api = '7632744670:AAGumjd0yzpeGgXr9Zgi5R55tv1EYhC1OB0'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
-kb_inlait = InlineKeyboardMarkup()
-but_Inlait = KeyboardButton(text='Рассчитать', callback_data ='calories')
-but_1_Inlait = KeyboardButton(text='Формулы расчёта', callback_data ='formulas')
-kb_inlait.row(but_Inlait, but_1_Inlait)
+kb_inline = InlineKeyboardMarkup()
+but_Inlait = InlineKeyboardButton(text='Рассчитать', callback_data ='calories')
+but_1_Inlait = InlineKeyboardButton(text='Формулы расчёта', callback_data ='formulas')
+kb_inline.row(but_Inlait, but_1_Inlait)
 
 kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
 kb_pol = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -38,13 +38,14 @@ class UserState(StatesGroup):
 
 @dp.message_handler(text=['Рассчитать'])
 async def main_menu(message):
-    await message.answer('Выберите опцию:', reply_markup = kb_inlait)
+    await message.answer('Выберите опцию:', reply_markup = kb_inline)
 
-@dp.callback_query_handler(text = 'formulas')
+@dp.callback_query_handler(text = ['formulas'])
 async  def get_formulas(call):
     await  call.message.answer(' для мужчин: 10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5 \n '
                                'для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161 ')
     await call.answer()
+
 
 
 @dp.callback_query_handler(text=['calories'])
