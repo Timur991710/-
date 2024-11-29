@@ -16,10 +16,10 @@ kb_inline = InlineKeyboardMarkup()
 kb_product_inline = InlineKeyboardMarkup()
 but_Inlait = InlineKeyboardButton(text='Рассчитать', callback_data ='calories')
 but_1_Inlait = InlineKeyboardButton(text='Формулы расчёта', callback_data ='formulas')
-but_product_1 = InlineKeyboardButton(text='Продукт 1', callback_data ='product_buying')
-but_product_2 = InlineKeyboardButton(text='Продукт 2', callback_data='product_buying')
-but_product_3 = InlineKeyboardButton(text='Продукт 3', callback_data ='product_buying')
-but_product_4 = InlineKeyboardButton(text='Продукт 4', callback_data ='product_buying')
+but_product_1 = InlineKeyboardButton(text='Хром', callback_data ='product_buying')
+but_product_2 = InlineKeyboardButton(text='Я стесняюсь', callback_data='product_buying')
+but_product_3 = InlineKeyboardButton(text='У нас пополнение', callback_data ='product_buying')
+but_product_4 = InlineKeyboardButton(text='Вот мы шиканули!', callback_data ='product_buying')
 
 kb_inline.row(but_Inlait, but_1_Inlait)
 kb_product_inline.row(but_product_1, but_product_2, but_product_3, but_product_4)
@@ -57,22 +57,27 @@ async  def get_formulas(call):
                                'для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161 ')
     await call.answer()
 
-
+but_product_1 = InlineKeyboardButton(text='Хром', callback_data ='product_buying')
+but_product_2 = InlineKeyboardButton(text='Я стесняюсь', callback_data='product_buying')
+but_product_3 = InlineKeyboardButton(text='У нас пополнение', callback_data ='product_buying')
+but_product_4 = InlineKeyboardButton(text='Вот мы шиканули!', callback_data ='product_buying')
 @dp.message_handler(text=['Купить'])
 async def get_buying_list(message):
     with open('files_photo/shar_1.jpg', 'rb') as img:
-        await message.answer_photo(img, 'Название: Продукт 1 | Описание: описание 1 | Цена: 100')
+        await message.answer_photo(img, 'Название: Хром | Описание: Буря красок и эмоций! | Цена: 100')
     with open('files_photo/shar_2.jpg', 'rb') as img_2:
-        await message.answer_photo(img_2, 'Название: Продукт 2 | Описание: описание 2 | Цена: 200')
+        await message.answer_photo(img_2, 'Название: Я стесняюсь | Описание: Порадуйте свою возлюбленную! | Цена: 200')
     with open('files_photo/shar_3.jpg', 'rb') as img_3:
-        await message.answer_photo(img_3, 'Название: Продукт 3 | Описание: описание 3 | Цена: 300')
+        await message.answer_photo(img_3, 'Название: У нас пополнение | Описание: Устройте праздник семье в честь рождения малыша!| Цена: 300')
     with open('files_photo/shar_4.jpg', 'rb') as img_4:
-        await message.answer_photo(img_4, 'Название: Продукт 4 | Описание: описание 4 | Цена: 400')
+        await message.answer_photo(img_4, 'Название: Вот мы шиканули! | Описание: Покажите всем что знаете толк в стиле, удивит даже бывалых гостей | Цена: 400')
     await message.answer('Выберите продукт для покупки: ', reply_markup = kb_product_inline )
 
 @dp.callback_query_handler(text=['product_buying'])
 async  def send_confirm_message(call):
     await  call.message.answer('Вы успешно приобрели продукт!')
+    await asyncio.sleep(1)
+    await call.message.answer('Мы не успели вас предупредить, рекламная акция закончилась, стоимость товара в среднем выше от 20 до 100 раз. Счет отправлен на почту.')
     await call.answer()
 
 
