@@ -13,7 +13,7 @@ description TEXT,
 price INT NOT NULL
 );
 ''')
-def get_all_products( id  = None, title = None, description = None, price = None):
+def get_all_products():
     connection = sqlite3.connect('crud_functions.db')
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
