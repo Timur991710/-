@@ -26,7 +26,7 @@ cursor.execute('CREATE INDEX IF NOT EXISTS idx_email ON Users (email)')
 
 for i in range(1, 11, 3):
 
-    cursor.execute('DELETE FROM Users WHERE username = ?', (f'User{i}',))
+    cursor.execute('DELETE FROM Users WHERE id = ?', (i,))
 
 cursor.execute('SELECT * FROM Users')
 users = cursor.fetchall()
