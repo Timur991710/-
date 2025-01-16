@@ -20,7 +20,8 @@ async def user(user_id: int = Path(gt=1, le=100, description='Enter User ID')):
 
 
 @app.get('/user/{username}/{age}')
-async def user_info(username: Annotated[str, Path(min_length=5, max_length=20)], age: Annotated[int, Path(gt=18, le=120)]):
+async def user_info(username: Annotated[str, Path(min_length=5, max_length=20, description='Enter username')],
+                    age: Annotated[int, Path(gt=18, le=120, description='Enter age')]):
     return f'Информация о пользователе, Имя: {username}, Возраст: {age}'
 
 
